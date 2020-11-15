@@ -1,17 +1,31 @@
-package ru.instaBot;
+package ru.instaBot.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class User {
+
+    @Id
+    private Integer id;
+
     private String login;
     private String password;
+
+    @OneToMany
     private List<Post> postList;
 
-    User(String login, String password) {
+    public User() {
+    }
+
+    public User(Integer id, String login, String password) {
         postList = new ArrayList<>();
-        this.login  = login;
+        this.login = login;
         this.password = password;
+        this.id = id;
     }
 
     public String getPassword() {
@@ -28,6 +42,14 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public List<Post> getPostList() {
